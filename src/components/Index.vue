@@ -16,8 +16,8 @@
 </template>
 
 <script>
-    import Aside from "./Aside";
-    import Header from "./Header";
+    import Aside from "../layout/Aside";
+    import Header from "../layout/Header";
 
     export default {
         name: "Index",

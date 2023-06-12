@@ -1,10 +1,10 @@
 <template>
-    <div style="text-align: center;background-color: #f1f1f3;height: 100%;padding: 0px;margin: 0px;">
+    <div style="text-align: center;background-color: rgba(0,216,255,0.38);height: 100px; width: 100px; padding: 0px;margin: 0px;">
     </div>
 </template>
 
 <script>
-import {getAll} from "@/api/user";
+
 
 export default {
     name: "Home",
@@ -14,13 +14,7 @@ export default {
         }
     },
   mounted() {
-/*    getList().then(res => {
-        console.log("123",res.data)
-    })*/
 
-    getAll().then(res => {
-        console.log("456",res)
-    })
   },
   methods: {}
 

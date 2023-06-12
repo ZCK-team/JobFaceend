@@ -5,7 +5,7 @@ const routes = [
     {
         path:'/',
         name:'login',
-        component:()=>import('../components/Login')
+        component:()=>import('../view/Login')
     },
     {
         path:'/Index',
@@ -18,7 +18,7 @@ const routes = [
                 meta:{
                     title:'首页'
                 },
-                component:()=>import('../components/Home')
+                component:()=>import('../view/visualization/Home')
             },
 
         ]

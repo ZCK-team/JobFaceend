@@ -84,6 +84,9 @@
         width: 100%;
         height: 100%;
         background-color: #B3C0D1;
+        background-image:  url('../assets/fangzai.png') ;
+        background-size: cover;
+        background-position: center;
     }
     .loginDiv {
         position: absolute;
