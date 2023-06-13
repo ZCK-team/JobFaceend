@@ -1,13 +1,12 @@
 <template>
     <el-container style="height: 100%; border: 1px solid #eee">
-        <el-aside :width="aside_witdh" style="height: 100vh;background-color: rgb(238, 241, 246);margin-left: -1px;">
+        <el-aside :width="aside_width" style="height: 100vh;background-color: rgb(238, 241, 246);margin-left: -1px;">
             <Aside :isCollapse="isCollapse"></Aside>
         </el-aside>
-        <el-container style="height: 100%;">
-            <el-header style="text-align: right; font-size: 12px;height: 100%;border-bottom: rgba(168,168,168,0.3) 1px solid;">
+        <el-container style="height: 100vh; width: 88%;">
+            <el-header style="text-align: right; font-size: 12px;height: 6%;border-bottom: rgba(168,168,168,0.3) 1px solid;">
                 <Header @doCollapse="doCollapse" :icon="icon"></Header>
             </el-header>
-
             <el-main style="height: 100%;">
                 <router-view/>
             </el-main>
@@ -25,7 +24,7 @@
         data(){
             return {
                 isCollapse:false,
-                aside_witdh:'200px',
+                aside_width:"12%",
                 icon:'el-icon-s-fold'
             }
         },

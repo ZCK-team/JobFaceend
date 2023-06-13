@@ -4,7 +4,7 @@
             <i :class="icon" style="font-size: 20px;cursor: pointer;" @click="collapse"></i>
         </div>
         <div style="flex: 1;text-align: center;font-size: 25px;">
-            <span>欢迎来到仓库管理系统</span>
+            <span>欢迎来到AI职业探索系统</span>
         </div>
         <el-dropdown>
             <span>{{user.name}}</span><i class="el-icon-arrow-down" style="margin-left: 5px;"></i>
