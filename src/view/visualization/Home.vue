@@ -1,10 +1,12 @@
 <template>
-    <div style="text-align: center;background-color: rgba(0,216,255,0.38);height: 100px; width: 100px; padding: 0px;margin: 0px;">
+    <div style="text-align: center;background-color: rgba(0,216,255,0.38);height: 666px; width: 1322px; padding: 0px;margin: 0px;">
     </div>
 </template>
 
 <script>
 
+
+import {getPositionInformationAll} from "@/api/positionInformation";
 
 export default {
     name: "Home",
@@ -14,7 +16,9 @@ export default {
         }
     },
   mounted() {
-
+    getPositionInformationAll().then(res=>{
+        console.log("+++++++++++++",res.data);
+    })
   },
   methods: {}
 
