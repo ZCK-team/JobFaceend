@@ -6,3 +6,9 @@ export function getPositionInformationAll() {
         method: "get",
     });
 }
+export function getSalary() {
+    return request({
+        url: '/positionInformation/getSalary',
+        method: "get",
+    });
+}

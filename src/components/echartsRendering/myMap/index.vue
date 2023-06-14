@@ -7,6 +7,7 @@
 
 import * as echarts from 'echarts'
 import chinaJson from '@/assets/china.json'
+import {getSalary} from "@/api/positionInformation";
 
 export default {
   name: "Home",
@@ -99,7 +100,10 @@ export default {
     }
   },
 
-  mounted() {
+    mounted() {
+    getSalary().then(res => {
+      console.log("+++++++++++++", res.data);
+    });
 
     const chartDom = this.$refs.chart;
     const myChart = echarts.init(chartDom,);
