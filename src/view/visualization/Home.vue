@@ -1,6 +1,6 @@
 <template>
   <div
-      class="bg" style="display: flex;text-align: center;height: 100%; width: 100%; padding: 0px;margin: 0px;">
+      class="bg" style="display: flex;text-align: center;height: 100%; width: 100%; padding: 0px;margin: 0px;overflow-x: hidden;overflow-y: hidden">
     <div style=" width: 28%; height: 100%;">
       <div class="bg1" style="height: 50%;width: 100%; ">
         <hot-city></hot-city>
@@ -70,28 +70,28 @@ export default {
   background-size: 112%;
 }
 
-.bg1 {
-  background-image: url('../../assets/bg1.png');
-  background-repeat: no-repeat;
+/*.bg1 {*/
+/*  background-image: url('../../assets/bg1.png');*/
+/*  background-repeat: no-repeat;*/
 
-}
+/*}*/
 
-.bg2 {
-  background-image: url('../../assets/bg1.png');
-  background-repeat: no-repeat;
+/*.bg2 {*/
+/*  background-image: url('../../assets/bg1.png');*/
+/*  background-repeat: no-repeat;*/
 
-}
+/*}*/
 
-.bg3 {
-  background-image: url('../../assets/bg3.png');
-  background-repeat: no-repeat;
+/*.bg3 {*/
+/*  background-image: url('../../assets/bg3.png');*/
+/*  background-repeat: no-repeat;*/
 
-}
+/*}*/
 
-.bg4 {
-  background-image: url('../../assets/bg4.png');
-  background-repeat: no-repeat;
-}
+/*.bg4 {*/
+/*  background-image: url('../../assets/bg4.png');*/
+/*  background-repeat: no-repeat;*/
+/*}*/
 
 .bgMap {
 

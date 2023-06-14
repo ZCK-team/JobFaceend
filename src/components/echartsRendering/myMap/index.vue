@@ -7,6 +7,7 @@
 
 import * as echarts from 'echarts'
 import chinaJson from '@/assets/china.json'
+import {getmapnum} from "@/api/positionInformation";
 
 export default {
   name: "Home",
@@ -22,6 +23,7 @@ export default {
       {name: '广西省', value: 300},
     ];
     return {
+      items: [],
       option: {
         // echarts 图表选项配置
         title: {
@@ -58,7 +60,7 @@ export default {
             mapType: 'china',
             left: 'center',
             top: 100,
-            zoom: 1.45,
+            zoom: 1.3,
             roam: true,
             label: {
               normal: {
@@ -100,13 +102,13 @@ export default {
   },
 
   mounted() {
-
+    getmapnum().then(res => {
+      console.log("ttttttttttttt", res.data);
+    })
     const chartDom = this.$refs.chart;
     const myChart = echarts.init(chartDom);
     this.loadMap(myChart);
-    this.sort(function (a, b) {
-      return a.value - b.value;
-    });
+
   },
   methods: {
     loadMap(myChart) {
