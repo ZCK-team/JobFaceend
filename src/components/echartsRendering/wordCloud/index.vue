@@ -1,5 +1,5 @@
 <template>
-  <div id="city" style="width: 100%; height: 100%;">
+  <div id="city" style="width: 100%; height: 100%; ">
 
   </div>
 </template>
@@ -8,7 +8,7 @@
 import * as echarts from 'echarts';
 
 export default {
-  name:'hotCity',
+  name:'wordCloud',
   mounted() {
     this.renderingHotCity()
   },
@@ -75,9 +75,6 @@ export default {
 <style>
 
 </style>
-
-
-
 
 
 
