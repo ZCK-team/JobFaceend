@@ -50,19 +50,21 @@ export default {
         },
         visualMap: {
           min: 0,
-          max: 1000,
+          max: 4000,
           left: '20px', // 向右移动 30px
           top: 'bottom',
           text: ['高', '低'],
+          inRange: {
+            // prettier-ignore
+            color:  ['#99ffff', 'rgb(64,166,255)', 'rgba(0,101,255,0.91)']
+          },
           calculable: true,
           itemWidth: 10,
           itemHeight: 80,
           textStyle: {
             color: 'white'
-          }
+          },
         },
-
-
         series: [
           {
             name: '数据名称',
@@ -82,7 +84,7 @@ export default {
               }
             },
             data: data,
-          }
+          },
         ]
       }
       myChart.hideLoading();
