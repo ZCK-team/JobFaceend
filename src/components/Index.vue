@@ -4,12 +4,12 @@
             <Aside :isCollapse="isCollapse"></Aside>
         </el-aside>
         <el-container style="height: 100vh; width: 88%;">
-            <el-header style="text-align: right; font-size: 12px;height: 6%;border-bottom: rgba(168,168,168,0.3) 1px solid;">
+            <el-header style="text-align: right;font-size: 12px;height: 6%;border-bottom: rgba(168,168,168,0.3) 1px solid;">
                 <Header @doCollapse="doCollapse" :icon="icon"></Header>
             </el-header>
-            <el-main style="height: 100%;">
-                <router-view/>
-            </el-main>
+            <el-div style="height: 94%;">
+                <router-view></router-view>
+            </el-div>
         </el-container>
     </el-container>
 </template>
@@ -31,7 +31,6 @@
         methods:{
             doCollapse(){
                 console.log(1111)
-
                 this.isCollapse = !this.isCollapse
                 if(!this.isCollapse){// 展开
                     this.aside_witdh='200px'
