@@ -1,6 +1,6 @@
 <template>
   <div
-      class="bg" style="display: flex;text-align: center;height: 100%; width: 100%; padding: 0px;margin: 0;overflow-x: hidden;overflow-y: hidden">
+      class="bg" style="display: flex;text-align: center;height: 100%; width: 100%; padding: 0px;margin: 0px;overflow-x: hidden;overflow-y: hidden">
     <div style=" width: 28%; height: 100%;">
       <div class="bg1" style="height: 50%;width: 100%;  ">
         <wordCloud></wordCloud>
