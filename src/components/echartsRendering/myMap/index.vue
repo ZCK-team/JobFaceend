@@ -102,7 +102,7 @@ export default {
   mounted() {
 
     const chartDom = this.$refs.chart;
-    const myChart = echarts.init(chartDom);
+    const myChart = echarts.init(chartDom,);
     this.loadMap(myChart);
     this.sort(function (a, b) {
       return a.value - b.value;

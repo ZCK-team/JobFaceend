@@ -21,6 +21,7 @@ export default {
         tooltip: {
           trigger: 'item'
         },
+        backgroundColor: 'rgba(0, 0, 0, 0.1)', // 设置背景透明度为 80%
         textStyle:{
           color:'#ffffff'
         },

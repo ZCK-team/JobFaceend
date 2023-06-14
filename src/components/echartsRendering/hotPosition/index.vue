@@ -19,6 +19,7 @@ this.hotjob()
       var option;
 
       option = {
+        backgroundColor: 'rgba(0, 0, 0, 0.1)', // 设置背景透明度为 80%
         tooltip: {
           trigger: 'item'
         },

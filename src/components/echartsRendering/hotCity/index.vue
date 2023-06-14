@@ -14,14 +14,15 @@ export default {
   },
   methods:{
     renderingHotCity(){
-      var chartDom = document.getElementById('city');
-      var myChart = echarts.init(chartDom);
-      var option;
+      const chartDom = document.getElementById('city');
+      const myChart = echarts.init(chartDom);
+      let option;
 
       option = {
         tooltip: {
           trigger: 'item'
         },
+        backgroundColor: 'rgba(0, 0, 0, 0.1)', // 设置背景透明度为 80%
         legend: {
           top: '10%',
           left: '20px',
@@ -74,3 +75,9 @@ export default {
 <style>
 
 </style>
+
+
+
+
+
+

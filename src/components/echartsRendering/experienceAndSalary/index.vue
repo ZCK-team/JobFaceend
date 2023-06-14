@@ -19,6 +19,7 @@ export default {
         title: {
           text: 'Stacked Line'
         },
+        backgroundColor: 'rgba(0, 0, 0, 0.15)', // 设置背景透明度为 80%
         tooltip: {
           trigger: 'axis'
         },

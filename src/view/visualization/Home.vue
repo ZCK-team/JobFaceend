@@ -70,6 +70,7 @@ export default {
   background-size: 112%;
 }
 
+/*
 .bg1 {
   background-image: url('../../assets/bg1.png');
   background-repeat: no-repeat;
@@ -92,9 +93,7 @@ export default {
   background-image: url('../../assets/bg4.png');
   background-repeat: no-repeat;
 }
+*/
 
-.bgMap {
-
-}
 
 </style>
