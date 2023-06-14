@@ -27,7 +27,6 @@ export default {
     async loadMap(myChart) {
       var data = []; // 修改为初始值为空数组
       await getmapnum().then(res => {
-        console.log(res.data)
         for (var i = 0; i < res.data.length; i++) { // 修改循环条件
           data.push({name: String(res.data[i].province), value: parseInt(res.data[i].num)});
         }
