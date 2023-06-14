@@ -6,5 +6,9 @@ export function getPositionInformationAll() {
         method: "get",
     });
 }
-
-
+export function getCityAndCityCount() {
+    return request({
+        url: '/positionInformation/getCityAndCityCount',
+        method: "get",
+    });
+}
