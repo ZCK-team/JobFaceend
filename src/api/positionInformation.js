@@ -6,3 +6,5 @@ export function getPositionInformationAll() {
         method: "get",
     });
 }
+
+

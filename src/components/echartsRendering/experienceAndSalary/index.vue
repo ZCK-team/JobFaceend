@@ -11,9 +11,9 @@ export default {
   },
   methods:{
     consider(){
-      var chartDom = document.getElementById('consider');
-      var myChart = echarts.init(chartDom);
-      var option;
+      const chartDom = document.getElementById('consider');
+      const myChart = echarts.init(chartDom);
+      let option;
 
       option = {
         title: {
