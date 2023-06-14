@@ -8,17 +8,15 @@ import {getSalaryAll} from '/src/api/experienceInformation'
 
 export default {
   name: "index",
-  data(){
-    return{
-
-    }
+  data() {
+    return {}
   },
   mounted() {
     this.consider()
   },
   methods: {
     async consider() {
-      var avgSalaryMin, avgSalaryMax, avgCombined;
+      let avgSalaryMin, avgSalaryMax, avgCombined;
       await getSalaryAll().then(res => {
         avgSalaryMin = [res.data[5].avgSalaryMin, res.data[2].avgSalaryMin, res.data[0].avgSalaryMin, res.data[3].avgSalaryMin, res.data[4].avgSalaryMin, res.data[1].avgSalaryMin]
         avgSalaryMax = [res.data[5].avgSalaryMax, res.data[2].avgSalaryMax, res.data[0].avgSalaryMax, res.data[3].avgSalaryMax, res.data[4].avgSalaryMax, res.data[1].avgSalaryMax]
@@ -30,8 +28,10 @@ export default {
       option = {
         title: {
           text: '工作经验与月薪资',
+          left: 'center',// 对齐在左，居中显示
+          top: 10,
           textStyle: {
-            color: 'lightblue' // 修改为所需的颜色，例如红色
+            color: "#50FFEBFF",// 修改为所需的颜色，例如红色
           }
         },
         backgroundColor: 'rgba(0, 0, 0, 0.15)', // 设置背景透明度为 80%
@@ -41,8 +41,8 @@ export default {
             console.log(params)
             return '<strong style="font-size: 18px; color: coral ;">工作' + params[0].axisValue + '<br></strong>' +
                 '<strong style="font-size: 18px; color: ' + params[2].color + ';">' + '平均薪资 --->' + params[2].value + "K<br>" + "</strong>" +
-                '<strong style="font-size: 18px; color: ' + params[0].color + ';">' + '最高薪资 --->' + params[0].value + "K<br>" + "</strong>" +
-                '<strong style="font-size: 18px; color: ' + params[1].color + ';">' + '最低薪资 --->' + params[1].value + "K<br>" + "</strong>";
+                '<strong style="font-size: 18px; color: ' + params[0].color + ';">' + '最高平均薪资 --->' + params[0].value + "K<br>" + "</strong>" +
+                '<strong style="font-size: 18px; color: ' + params[1].color + ';">' + '最低平均薪资 --->' + params[1].value + "K<br>" + "</strong>";
           },
         },
         grid: {
@@ -69,8 +69,8 @@ export default {
         yAxis: {
           type: 'value',
           min: 0, // 设置最低值为 0K
-          max: 60, // 设置最高值为 100K
-          interval: 20, // 设置刻度的间隔为 20K
+          max: 50, // 设置最高值为 100K
+          interval: 10, // 设置刻度的间隔为 20K
           axisLabel: {
             formatter: '{value}K',// 在值后面添加 "K" 单位
             textStyle: {
@@ -80,14 +80,14 @@ export default {
         },
         series: [
           {
-            name: '最高薪资',
+            name: '最高平均薪资',
             type: 'line',
             stack: '',   //设置分层展示
             data: avgSalaryMax, // 将数据都设置为 20K
             smooth: true // 将折线改为曲线
           },
           {
-            name: '最低薪资',
+            name: '最低平均薪资',
             type: 'line',
             stack: '',
             data: avgSalaryMin, // 将数据都设置为 20K
@@ -102,11 +102,8 @@ export default {
           }
         ]
       };
-
       option && myChart.setOption(option);
-
     }
-
   }
 }
 </script>
