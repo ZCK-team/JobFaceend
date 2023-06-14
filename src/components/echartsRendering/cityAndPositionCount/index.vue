@@ -18,10 +18,6 @@ export default {
   mounted() {
     this.dataLink()
 
-    // getCityAndCityCount().then(res => {
-    //   console.log("++++++++1111+", res.data);
-    // })
-
   },
   methods:{
     dataLink(){
@@ -46,31 +42,25 @@ export default {
         for (let i = 0; i < data.length; i++) {
           dataShadow.push(yMax);
         }
-      // prettier-ignore
-//       let dataAxis = ['北京', '击', '柱', '子', '或', '者', '两', '指', '在', '触', '屏', '上','点', '击' ];
-// // prettier-ignore
-//       let data = [220, 182, 191, 234, 290, 330, 310, 123, 442, 321, 90, 149,220, 182, 191];
-//       let yMax = 500;
-//       let dataShadow = [];
-//       for (let i = 0; i < data.length; i++) {
-//         dataShadow.push(yMax);
-//       }
 
       option = {
+        tooltip: {
+          trigger: 'item',
+        },
+        backgroundColor: 'rgba(0, 0, 0, 0.1)',
         title: {
           text: 'Top15城市岗位数量统计图',
-          top:'10',
+          top:'15',
           left:'center',
           textStyle:{
-            color:'#fff'
+            color:'rgb(0,216,255)'
           }
-          // subtext: 'Feature Sample: Gradient Color, Shadow, Click Zoom'
         },
         xAxis: {
           data: dataAxis,
           axisLabel: {
             interval: 0, // 显示所有标签
-            rotate: 0, // 将标签旋转 45 度
+            rotate: 0, // 将标签旋转 0°
             inside: false,
             color: '#fff'
           },
@@ -84,13 +74,13 @@ export default {
         },
         yAxis: {
           axisLine: {
-            show: false
+            show: false,
           },
           axisTick: {
             show: false
           },
           axisLabel: {
-            color: '#999'
+            color: '#fff',
           }
         },
         dataZoom: [
@@ -101,31 +91,47 @@ export default {
         series: [
           {
             type: 'bar',
-            showBackground: true,
+            left: '60', // 调整整体向右移动20px
+            // showBackground: true,
             itemStyle: {
-              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                { offset: 0, color: '#83bff6' },
-                { offset: 0.5, color: '#188df0' },
-                { offset: 1, color: '#188df0' }
-              ])
+              color: function() {
+                return (
+                    "rgb(" +
+                    Math.round(Math.random() * 255) +
+                    ", " +
+                    Math.round(Math.random() * 255) +
+                    ", " +
+                    Math.round(Math.random() * 255) +
+                    ")"
+                );
+              }
             },
 
             emphasis: {
               itemStyle: {
-                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                  { offset: 0, color: '#2378f7' },
-                  { offset: 0.7, color: '#2378f7' },
-                  { offset: 1, color: '#83bff6' }
-                ])
+                color: function() {
+                  return (
+                      "rgb(" +
+                      Math.round(Math.random() * 255) +
+                      ", " +
+                      Math.round(Math.random() * 255) +
+                      ", " +
+                      Math.round(Math.random() * 255) +
+                      ")"
+                  );
+                }
               }
             },
-            name: 'Life Cost',
             stack: 'Total',
             label: {
               show: true,
+              textStyle: {
+                color: '#ffffff',
+                size: 20
+              },
               position: 'top'
             },
-            data: data
+            data: data,
           },
 
         ]

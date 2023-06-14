@@ -6,7 +6,7 @@
         <wordCloud></wordCloud>
       </div>
       <div class="bg2" style="height: 50%;width: 100%; ">
-        <cityAndPositionCount></cityAndPositionCount>
+          <cityAndPositionCount></cityAndPositionCount>
       </div>
 
     </div>
