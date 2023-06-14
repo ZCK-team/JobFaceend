@@ -12,19 +12,30 @@ import {getmapnum} from "@/api/positionInformation";
 export default {
   name: "Home",
   data() {
-    const data = [
-      {name: '内蒙古自治区', value: 1000},
-      {name: '贵州省', value: 900},
-      {name: '广东省', value: 800},
-      {name: '河南省', value: 700},
-      {name: '河北省', value: 600},
-      {name: '四川省', value: 500},
-      {name: '江苏省', value: 400},
-      {name: '广西省', value: 300},
-    ];
     return {
-      items: [],
-      option: {
+
+    }
+  },
+
+  mounted() {
+    const chartDom = this.$refs.chart;
+    const myChart = echarts.init(chartDom);
+    this.loadMap(myChart);
+
+  },
+  methods: {
+    async loadMap(myChart) {
+      var data = []; // 修改为初始值为空数组
+      await getmapnum().then(res => {
+        console.log(res.data)
+        for (var i = 0; i < res.data.length; i++) { // 修改循环条件
+          data.push({name: String(res.data[i].province), value: parseInt(res.data[i].num)});
+        }
+      })
+      // console.log(data)
+      myChart.showLoading();
+      echarts.registerMap('china', chinaJson);
+      var option = {
         // echarts 图表选项配置
         title: {
           text: '城市平均薪资分布情况',
@@ -74,48 +85,9 @@ export default {
             data: data,
           }
         ]
-      },
-      barOption: {
-        xAxis: {
-          type: 'value'
-        },
-        yAxis: {
-          type: 'category',
-          axisLabel: {
-            rotate: 30
-          },
-          data: data.map(function (item) {
-            return item.name;
-          })
-        },
-        animationDurationUpdate: 1000,
-        series: {
-          type: 'bar',
-          id: 'population',
-          data: data.map(function (item) {
-            return item.value;
-          }),
-          universalTransition: true
-        }
       }
-    }
-  },
-
-  mounted() {
-    getmapnum().then(res => {
-      console.log("ttttttttttttt", res.data);
-    })
-    const chartDom = this.$refs.chart;
-    const myChart = echarts.init(chartDom);
-    this.loadMap(myChart);
-
-  },
-  methods: {
-    loadMap(myChart) {
-      myChart.showLoading();
-      echarts.registerMap('china', chinaJson);
       myChart.hideLoading();
-      myChart.setOption(this.option)
+      myChart.setOption(option)
     },
 
   }
