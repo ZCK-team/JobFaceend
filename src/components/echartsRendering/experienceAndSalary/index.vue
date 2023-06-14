@@ -4,27 +4,46 @@
 
 <script>
 import * as echarts from 'echarts';
+import {getSalaryAll} from '/src/api/experienceInformation'
+
 export default {
   name: "index",
+  data(){
+    return{
+
+    }
+  },
   mounted() {
     this.consider()
   },
-  methods:{
-    consider(){
+  methods: {
+    async consider() {
+      var avgSalaryMin, avgSalaryMax, avgCombined;
+      await getSalaryAll().then(res => {
+        avgSalaryMin = [res.data[5].avgSalaryMin, res.data[2].avgSalaryMin, res.data[0].avgSalaryMin, res.data[3].avgSalaryMin, res.data[4].avgSalaryMin, res.data[1].avgSalaryMin]
+        avgSalaryMax = [res.data[5].avgSalaryMax, res.data[2].avgSalaryMax, res.data[0].avgSalaryMax, res.data[3].avgSalaryMax, res.data[4].avgSalaryMax, res.data[1].avgSalaryMax]
+        avgCombined = [res.data[5].avgCombined, res.data[2].avgCombined, res.data[0].avgCombined, res.data[3].avgCombined, res.data[4].avgCombined, res.data[1].avgCombined]
+      });
       const chartDom = document.getElementById('consider');
       const myChart = echarts.init(chartDom);
       let option;
-
       option = {
         title: {
-          text: 'Stacked Line'
+          text: '工作经验与月薪资',
+          textStyle: {
+            color: 'lightblue' // 修改为所需的颜色，例如红色
+          }
         },
         backgroundColor: 'rgba(0, 0, 0, 0.15)', // 设置背景透明度为 80%
         tooltip: {
-          trigger: 'axis'
-        },
-        legend: {
-          data: ['Email', 'Union Ads', 'Video Ads', 'Direct', 'Search Engine']
+          trigger: 'axis',
+          formatter: function (params) {
+            console.log(params)
+            return '<strong style="font-size: 18px; color: coral ;">工作' + params[0].axisValue + '<br></strong>' +
+                '<strong style="font-size: 18px; color: ' + params[2].color + ';">' + '平均薪资 --->' + params[2].value + "K<br>" + "</strong>" +
+                '<strong style="font-size: 18px; color: ' + params[0].color + ';">' + '最高薪资 --->' + params[0].value + "K<br>" + "</strong>" +
+                '<strong style="font-size: 18px; color: ' + params[1].color + ';">' + '最低薪资 --->' + params[1].value + "K<br>" + "</strong>";
+          },
         },
         grid: {
           left: '3%',
@@ -40,41 +59,46 @@ export default {
         xAxis: {
           type: 'category',
           boundaryGap: false,
-          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+          data: ['经验不限', '一年以内', '1-3年', '3-5年', '5-10年', '10年以上'],
+          axisLabel: {
+            textStyle: {
+              color: 'lightblue' // 修改为所需的颜色
+            }
+          }
         },
         yAxis: {
-          type: 'value'
+          type: 'value',
+          min: 0, // 设置最低值为 0K
+          max: 60, // 设置最高值为 100K
+          interval: 20, // 设置刻度的间隔为 20K
+          axisLabel: {
+            formatter: '{value}K',// 在值后面添加 "K" 单位
+            textStyle: {
+              color: 'lightblue' // 修改为所需的颜色
+            }
+          }
         },
         series: [
           {
-            name: 'Email',
+            name: '最高薪资',
             type: 'line',
-            stack: 'Total',
-            data: [120, 132, 101, 134, 90, 230, 210]
+            stack: '',   //设置分层展示
+            data: avgSalaryMax, // 将数据都设置为 20K
+            smooth: true // 将折线改为曲线
           },
           {
-            name: 'Union Ads',
+            name: '最低薪资',
             type: 'line',
-            stack: 'Total',
-            data: [220, 182, 191, 234, 290, 330, 310]
+            stack: '',
+            data: avgSalaryMin, // 将数据都设置为 20K
+            smooth: true // 将折线改为曲线
           },
           {
-            name: 'Video Ads',
+            name: '平均薪资',
             type: 'line',
-            stack: 'Total',
-            data: [150, 232, 201, 154, 190, 330, 410]
-          },
-          {
-            name: 'Direct',
-            type: 'line',
-            stack: 'Total',
-            data: [320, 332, 301, 334, 390, 330, 320]
-          },
-          {
-            name: 'Search Engine',
-            type: 'line',
-            stack: 'Total',
-            data: [820, 932, 901, 934, 1290, 1330, 1320]
+            stack: '',
+            data: avgCombined, // 将数据都设置为 20K
+            smooth: true // 将折线改为曲线
           }
         ]
       };
