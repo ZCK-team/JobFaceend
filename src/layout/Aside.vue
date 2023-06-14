@@ -1,7 +1,6 @@
 <template>
     <el-menu
-            background-color="#00C4FFCD"
-            background-image="url(src/assets/sidebackground.jpg)"
+            background-color="#0e4d8f"
             text-color="#fff"
             active-text-color="#ffd04b"
             style="height: 100%;"
@@ -30,6 +29,8 @@
         data(){
             return {
                 //isCollapse:false
+
+
             }
         },
         computed:{

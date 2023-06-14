@@ -1,26 +1,26 @@
 <template>
   <div
-      style="display: flex;text-align: center;background-color: rgba(0,216,255,0.38);height: 100%; width: 100%; padding: 0px;margin: 0px;">
-    <div style="background-color: yellow; width: 28%; height: 100%;">
-      <div style="height: 50%;width: 100%; background-color: #e77272">
-
+      class="bg" style="display: flex;text-align: center;height: 100%; width: 100%; padding: 0px;margin: 0px;">
+    <div style=" width: 28%; height: 100%;">
+      <div class="bg1" style="height: 50%;width: 100%; ">
+        <hot-city></hot-city>
       </div>
-      <div style="height: 50%;width: 100%; background-color: rgba(0,216,255,0.51)">
-
+      <div class="bg2" style="height: 50%;width: 100%; ">
+        <cityAndPositionCount></cityAndPositionCount>
       </div>
 
     </div>
-    <div style="background-color: orangered;width: 44%;height: 100%">
-      <div style="background-color: rgb(145,213,36);width: 100%;height: 65%;">
-
+    <div style="width: 44%;height: 100%">
+      <div class="bgMap" style="width: 100%;height: 65%;">
+        <myMap></myMap>
       </div>
-      <div style="background-color: rgba(0,216,255,0.38);width: 100%;height: 35%;">
-
+      <div class="bg3" style="width: 100%;height: 35%;">
+        <experienceAndSalary></experienceAndSalary>
       </div>
     </div>
-    <div style="background-color: rgb(234,75,75);width: 28%;height: 100%">
-      <div style="background-color: palegoldenrod; width: 100%;height: 100%;">
-
+    <div style="width: 28%;height: 100%">
+      <div class="bg4" style=" width: 100%;height: 100%;">
+        <hot-position></hot-position>
       </div>
 
     </div>
@@ -33,9 +33,16 @@
 
 
 import {getPositionInformationAll} from "@/api/positionInformation";
+import myMap from "@/components/echartsRendering/myMap";
+import hotPosition from "@/components/echartsRendering/hotPosition";
+import hotCity from "@/components/echartsRendering/hotCity";
+import cityAndPositionCount from "@/components/echartsRendering/cityAndPositionCount";
+import experienceAndSalary from "@/components/echartsRendering/experienceAndSalary";
+
 
 export default {
   name: "Home",
+  components: {myMap, hotPosition, hotCity, cityAndPositionCount, experienceAndSalary},
   data() {
     return {}
   },
@@ -56,4 +63,38 @@ export default {
   margin: 0 auto;
   text-align: center;
 }
+
+.bg {
+  background-image: url('../../assets/bg.png');
+  background-repeat: no-repeat;
+  background-size: 112%;
+}
+
+.bg1 {
+  background-image: url('../../assets/bg1.png');
+  background-repeat: no-repeat;
+
+}
+
+.bg2 {
+  background-image: url('../../assets/bg1.png');
+  background-repeat: no-repeat;
+
+}
+
+.bg3 {
+  background-image: url('../../assets/bg3.png');
+  background-repeat: no-repeat;
+
+}
+
+.bg4 {
+  background-image: url('../../assets/bg4.png');
+  background-repeat: no-repeat;
+}
+
+.bgMap {
+
+}
+
 </style>
