@@ -13,7 +13,6 @@ export default {
   name: "Home",
   data() {
     return {
-
     }
   },
 
@@ -25,10 +24,13 @@ export default {
   },
   methods: {
     async loadMap(myChart) {
-      var data = []; // 修改为初始值为空数组
+      var data = [];// 修改为初始值为空数组
       await getmapnum().then(res => {
         for (var i = 0; i < res.data.length; i++) { // 修改循环条件
-          data.push({name: String(res.data[i].province), value: parseInt(res.data[i].num)});
+          console.log("tttttttt",res.data[3].avgsalarymin)
+          // var salarymin = parseInt(res.data[i].avgsalarymin);
+          // var salarymax = parseInt(res.data[i].avgsalarymax);
+          data.push({name: String(res.data[i].province), value: parseInt(res.data[i].num), avgsalarymin: res.data[i].avgsalarymin, avgsalarymax: res.data[i].avgsalarymax});
         }
       })
       // console.log(data)
@@ -46,7 +48,19 @@ export default {
         },
         tooltip: {
           trigger: 'item',
-
+          formatter: (e) => {
+            let data = e.data;
+            //字符串模板
+            let context = `
+               <div>
+                   <p style="line-height: 30px; font-weight: 600">${data.name}</p>
+                   <p><span>岗位数量 : </span><span>${data.value}</span></p>
+                   <p><span>最低平均薪资 : </span><span>${data.avgsalarymin}K</span></p>
+                   <p><span>最高平均薪资 : </span><span>${data.avgsalarymax}K</span></p>
+               </div>
+            `;
+            return context;
+          }
         },
         visualMap: {
           min: 0,
@@ -85,12 +99,11 @@ export default {
             },
             data: data,
           },
-        ]
+        ],
       }
       myChart.hideLoading();
-      myChart.setOption(option)
+       myChart.setOption(option)
     },
-
   }
 }
 </script>

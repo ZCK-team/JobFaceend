@@ -7,12 +7,6 @@ export function getPositionInformationAll() {
     });
 }
 
-export function getSalary() {
-    return request({
-        url: '/positionInformation/getSalary',
-        method: "get",
-    });
-}
 
 export function getmapnum() {
     return request({
