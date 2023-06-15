@@ -44,7 +44,6 @@
             }
         },
         methods:{
-
             confirm(){
                 this.confirm_disabled=true;
                 this.$refs.loginForm.validate((valid) => {
@@ -52,14 +51,15 @@
                         //去后台验证用户名密码
                         this.$axios.post(this.$httpUrl+'/user/login',this.loginForm).then(res=>res.data).then(res=>{
                             console.log(res)
-                            if(res.code==200){
+                            if(res.code===200){
                                 //存储
                                 sessionStorage.setItem("CurUser",JSON.stringify(res.data.user))
 
                                 console.log(res.data.menu)
                                 this.$store.commit("setMenu",res.data.menu)
                                 //跳转到主页
-                                this.$router.replace('/Index');
+                                this.$router.push('/Index')
+                                // this.$router.replace('/PositionSearch');
                             }else{
                                 this.confirm_disabled=false;
                                 alert('校验失败，用户名或密码错误！');

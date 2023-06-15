@@ -32,6 +32,7 @@
                 console.log('to_user')
 
                 this.$router.push("/Home")
+
             },
             logout(){
                 console.log('logout')
@@ -66,6 +67,7 @@
         },
         created(){
             this.$router.push("/Home")
+
         }
 
     }

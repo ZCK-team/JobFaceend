@@ -1,15 +1,27 @@
 <template>
   <div id="app">
-     <router-view/>
+
+<!--    <Index></Index>-->
+<!--    <Header></Header>-->
+    <router-view></router-view>
+
+<!--    <Aside></Aside>-->
   </div>
 </template>
-<script>
 
+<script>
+import router from '../router.js';
+// import Aside from "@/layout/Aside";
+// import Index from '../src/components/Index'
+// import Header from "@/layout/Header";
 
 export default {
   name: 'App',
+  router,
   components: {
-
+    // Header,
+    // Aside
+    // Index
   },
   data() {
     return{
