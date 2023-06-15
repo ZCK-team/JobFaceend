@@ -1,6 +1,5 @@
 <template>
   <div id="position" style="width: 100%; height: 100%;">
-
   </div>
 </template>
 
@@ -11,75 +10,95 @@ import {getCityFromHottestPosition} from "@/api/positionInformation";
 export default {
   name:'hotPosition',
   mounted() {
-    this.hotjob()
+    this.hotJob()
     this.getCityFromHottestPosition()
   },
   methods:{
-    async hotjob(){
+    async hotJob(){
       const res = await getCityFromHottestPosition();
-      console.log("数据",res.data)
-      let dataSoutce = []
-      // let
+      let dataSource = []
       for(let i=0;i<20;i++){
         console.log(res.data[i])
         console.log(Object.values(res.data[i]))
-        dataSoutce.push(Object.values(res.data[i]))
-        // dataSoutce.reverse()
+        dataSource.push(Object.values(res.data[i]))
       }
-      dataSoutce = dataSoutce.reverse();
-      var chartDom = document.getElementById('position');
-      var myChart = echarts.init(chartDom);
-      var option;
-      option = {
+      dataSource = dataSource.reverse();
+      const chartDom = document.getElementById('position');
+      const myChart = echarts.init(chartDom);
+      let option = {
         backgroundColor: 'rgba(0, 0, 0, 0.1)', // 设置背景透明度为 80%
         tooltip: {
           trigger: 'item'
         },
         dataset: {
-          source: dataSoutce
+          source: dataSource
         },
         grid: {
           containLabel: true,
-          width: '82%',
+          width: '83%',
           left: 10
         },
         xAxis: {
-          name: 'count',
+          name: '岗位数量',
+          position: 'left',
+          nameTextStyle:{
+            color:"#00ffff",
+            fontSize:10
+          },
           axisLabel: {
-            rotate: 45 // 设置旋转角度，正值表示逆时针旋转，负值表示顺时针旋转
+            rotate: 0 ,// 设置旋转角度，正值表示逆时针旋转，负值表示顺时针旋转
+            color:"#00ffff",
           }
         },
         yAxis: {
+          name: "岗位名称",
+          nameTextStyle: {
+            color:"#00ffff",
+            position: 'bottom'
+          },
           type: 'category' ,
+          position:  'left',
           axisLabel: {
-            rotate: 45 // 设置旋转角度，正值表示逆时针旋转，负值表示顺时针旋转
+            rotate: 0, // 设置旋转角度，正值表示逆时针旋转，负值表示顺时针旋转
+            color:"#00ffff",
+            fontSize:12,
           }
         },
-        visualMap: {
+/*        visualMap: {
           orient: 'horizontal',
           left: 'center',
           min: 10,
           max: 650,
           text: ['High Score', 'Low Score'],
-          // Map the score column to color
           dimension: 0,
           inRange: {
             color: ['#FFCE34', '#FD665F']
           }
-        },
+        },*/
         series: [
           {
             type: 'bar',
             encode: {
-              // Map the "amount" column to X axis.
               x: 'amount',
-              // Map the "product" column to Y axis
               y: 'product'
-            }
+            },
+            itemStyle: {
+              barBorderRadius: [0, 20, 20, 0], // 仅设置末端为圆角，其他角为直角
+              color: function() {
+                return (
+                    "rgb(" +
+                    Math.round(Math.random() * 255) +
+                    ", " +
+                    Math.round(Math.random() * 255) +
+                    ", " +
+                    Math.round(Math.random() * 255) +
+                    ")"
+                );
+              }
+            },
           }
         ]
       };
-      // option.yAxis.data = option.yAxis.data.reverse();
       option && myChart.setOption(option);
 
     }

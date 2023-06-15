@@ -94,6 +94,7 @@ export default {
             left: '60', // 调整整体向右移动20px
             // showBackground: true,
             itemStyle: {
+              barBorderRadius: [20, 20, 0, 0], // 仅设置末端为圆角，其他角为直角
               color: function() {
                 return (
                     "rgb(" +
