@@ -13,7 +13,6 @@ export default {
   name: "Home",
   data() {
     return {
-
     }
   },
 
@@ -25,10 +24,11 @@ export default {
   },
   methods: {
     async loadMap(myChart) {
-      var data = []; // 修改为初始值为空数组
+      var data = [];// 修改为初始值为空数组
       await getmapnum().then(res => {
         for (var i = 0; i < res.data.length; i++) { // 修改循环条件
-          data.push({name: String(res.data[i].province), value: parseInt(res.data[i].num)});
+          console.log("tttttttt",res.data[3].avgsalarymin)
+          data.push({name: String(res.data[i].province), value: parseInt(res.data[i].num), avgsalarymin: res.data[i].avgsalarymin, avgsalarymax: res.data[i].avgsalarymax});
         }
       })
       // console.log(data)
@@ -37,7 +37,7 @@ export default {
       const option = {
         // echarts 图表选项配置
         title: {
-          text: '各省市岗位数量发布概况',
+          text: '各省市岗位薪资分布',
           left: 'center', // 设置标题居中
           top: 10, // 设置距离顶部 10px
           textStyle: {
@@ -46,7 +46,19 @@ export default {
         },
         tooltip: {
           trigger: 'item',
-
+          formatter: (e) => {
+            let data = e.data;
+            //字符串模板
+            let context = `
+               <div>
+                   <p style="line-height: 30px; font-weight: 600">${data.name}</p>
+                   <p><span>岗位数量 : </span><span>${data.value}</span></p>
+                   <p><span>最低平均薪资 : </span><span>${data.avgsalarymin}K</span></p>
+                   <p><span>最高平均薪资 : </span><span>${data.avgsalarymax}K</span></p>
+               </div>
+            `;
+            return context;
+          }
         },
         visualMap: {
           min: 0,
@@ -73,7 +85,7 @@ export default {
             mapType: 'china',
             left: 'center',
             top: 100,
-            zoom: 1.5,
+            zoom: 1.4,
             roam: true,
             label: {
               normal: {
@@ -91,7 +103,6 @@ export default {
       myChart.hideLoading();
       myChart.setOption(option)
     },
-
   }
 }
 </script>
