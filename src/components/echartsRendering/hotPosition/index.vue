@@ -26,6 +26,14 @@ export default {
       const chartDom = document.getElementById('position');
       const myChart = echarts.init(chartDom);
       let option = {
+        title: {
+          text: '热门岗位Top20',
+          left: 'center', // 设置标题居中
+          top: 7, // 设置距离顶部 10px
+          textStyle: {
+            color:  'rgb(0,255,234)',
+          }
+        },
         backgroundColor: 'rgba(0, 0, 0, 0.1)', // 设置背景透明度为 80%
         tooltip: {
           trigger: 'item'
@@ -43,7 +51,7 @@ export default {
           position: 'left',
           nameTextStyle:{
             color:"#00ffff",
-            fontSize:10
+            fontSize:10,
           },
           axisLabel: {
             rotate: 0 ,// 设置旋转角度，正值表示逆时针旋转，负值表示顺时针旋转
@@ -64,17 +72,6 @@ export default {
             fontSize:12,
           }
         },
-/*        visualMap: {
-          orient: 'horizontal',
-          left: 'center',
-          min: 10,
-          max: 650,
-          text: ['High Score', 'Low Score'],
-          dimension: 0,
-          inRange: {
-            color: ['#FFCE34', '#FD665F']
-          }
-        },*/
         series: [
           {
             type: 'bar',

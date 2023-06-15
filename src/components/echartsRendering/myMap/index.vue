@@ -34,14 +34,14 @@ export default {
       // console.log(data)
       myChart.showLoading();
       echarts.registerMap('china', chinaJson);
-      var option = {
+      const option = {
         // echarts 图表选项配置
         title: {
           text: '各省市岗位数量发布概况',
           left: 'center', // 设置标题居中
           top: 10, // 设置距离顶部 10px
           textStyle: {
-            color:  'rgb(0,255,234)',
+            color: 'rgb(0,255,234)',
           }
         },
         tooltip: {
@@ -57,7 +57,7 @@ export default {
           inRange: {
             // prettier-ignore
 
-            color:  ['#99ffff', 'rgb(64,166,255)', 'rgb(64,124,255)', 'rgba(0,101,255,0.91)']
+            color: ['#99ffff', 'rgb(64,166,255)', 'rgb(64,124,255)', 'rgba(0,101,255,0.91)']
           },
           calculable: true,
           itemWidth: 10,
@@ -87,7 +87,7 @@ export default {
             data: data,
           },
         ]
-      }
+      };
       myChart.hideLoading();
       myChart.setOption(option)
     },

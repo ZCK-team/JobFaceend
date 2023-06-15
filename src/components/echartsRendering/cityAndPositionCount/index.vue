@@ -49,7 +49,7 @@ export default {
         },
         backgroundColor: 'rgba(0, 0, 0, 0.1)',
         title: {
-          text: 'Top10城市岗位数量统计图',
+          text: '城市岗位数量Top10统计图',
           top:'15',
           left:'center',
           textStyle:{

@@ -59,19 +59,11 @@ export default {
         series: [
           {
             type: "wordCloud",
-            shape: 'circle', // 设置词云图形状为爱心形状
+            shape: 'circle',
             //用来调整词之间的距离
             gridSize: 8,
-            //用来调整字的大小范围
-            // Text size range which the value in data will be mapped to.
-            // Default to have minimum 12px and maximum 60px size.
             sizeRange: [12, 30],
-            // Text rotation range and step in degree. Text will be rotated randomly in range [-90,                                                                             90] by rotationStep 45
-            //用来调整词的旋转方向，，[0,0]--代表着没有角度，也就是词为水平方向，需要设置角度参考注释内容
-            // rotationRange: [-45, 0, 45, 0],
-            // rotationRange: [ 0,90],
             rotationRange: [0,90],
-            //位置相关设置
             left: "center",
             top: "center",
             right: null,
@@ -82,6 +74,8 @@ export default {
           }
         ]
       })
+
+
     }
   }
 }
