@@ -1,30 +1,38 @@
 <template>
-  <div
-      class="bg" style="display: flex;text-align: center;height: 100%; width: 100%; padding: 0px;margin: 0px;overflow-x: hidden;overflow-y: hidden">
+  <div class="bg"
+       style="display: flex;text-align: center;height: 100%; width: 100%; padding: 0px;margin: 0px;overflow-x: hidden;overflow-y: hidden">
     <div style=" width: 28%; height: 100%;">
-      <div class="bg1" style="height: 50%;width: 100%;  ">
-        <wordCloud></wordCloud>
+      <div class="bg1" style="height: 50%;width: 100%; ">
+        <dv-border-box-8 class="border">
+          <wordCloud class="module"></wordCloud>
+        </dv-border-box-8>
       </div>
       <div class="bg2" style="height: 50%;width: 100%; ">
-          <cityAndPositionCount></cityAndPositionCount>
+        <dv-border-box-8 :reverse="true" class="border">
+          <cityAndPositionCount class="module"></cityAndPositionCount>
+        </dv-border-box-8>
       </div>
-
     </div>
     <div style="width: 44%;height: 100%">
       <div class="bgMap" style="width: 100%;height: 65%; ">
+        <dv-border-box-1>
         <myMap></myMap>
+        </dv-border-box-1>
       </div>
       <div class="bg3" style="width: 100%;height: 35%;">
-        <experienceAndSalary></experienceAndSalary>
+        <dv-border-box-8 class="border" >
+          <experienceAndSalary class="module"></experienceAndSalary>
+        </dv-border-box-8>
       </div>
     </div>
     <div style="width: 28%;height: 100%">
       <div class="bg4" style=" width: 100%;height: 100%;">
-        <hot-position></hot-position>
+        <dv-border-box-8 class="border">
+          <hot-position class="module"></hot-position>
+        </dv-border-box-8>
       </div>
 
     </div>
-
 
   </div>
 </template>
@@ -70,31 +78,15 @@ export default {
   background-size: 112%;
 }
 
-/*
-.bg1 {
-  !*background-image: url('../../assets/bg1.png');*!
-  background-repeat: no-repeat;
-  background-size: contain;
+.border{
+  height: 100%;
+  width: 112% !important;
 }
+.module{
+  height: 100%;
+  width: 100% !important;
 
-.bg2 {
-  !*background-image: url('../../assets/bg1.png');*!
-  background-repeat: no-repeat;
-  background-size: contain;
 }
-
-.bg3 {
-  !*background-image: url('../../assets/bg3.png');*!
-  background-repeat: no-repeat;
-  background-size: contain;
-}
-
-.bg4 {
-  !*background-image: url('../../assets/bg4.png');*!
-  background-repeat: no-repeat;
-  background-size: contain;
-}
-*/
 
 
 </style>

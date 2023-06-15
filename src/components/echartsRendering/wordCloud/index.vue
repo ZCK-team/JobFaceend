@@ -1,6 +1,5 @@
 <template>
-  <div ref="wordCloud" style="height: 100%; width: 100%;" >
-  </div>
+  <div ref="wordCloud" style="height: 100%; width: 100%;" ></div>
 </template>
 <script>
 import * as echarts from 'echarts';
@@ -33,7 +32,7 @@ export default {
       myChart.setOption({
         backgroundColor: 'rgba(0, 0, 0, 0.15)', // 设置背景透明度为 80%
         title: {
-          text: '技术要求词云图',
+          text: '技术栈要求词云图',
           left: 'center', // 设置标题居中
           top: 5, // 设置距离顶部 10px
           textStyle: {

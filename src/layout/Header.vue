@@ -6,14 +6,13 @@
         <div style="flex: 1;text-align: center;font-size: 25px;">
             <span>欢迎来到AI职业探索系统</span>
         </div>
-        <el-dropdown>
+        <el-dropdown style="color: white">
             <span>{{user.name}}</span><i class="el-icon-arrow-down" style="margin-left: 5px;"></i>
             <el-dropdown-menu slot="dropdown">
                 <el-dropdown-item @click.native="toUser">个人中心</el-dropdown-item>
                 <el-dropdown-item @click.native="logout">退出登录</el-dropdown-item>
             </el-dropdown-menu>
         </el-dropdown>
-
     </div>
 </template>
 

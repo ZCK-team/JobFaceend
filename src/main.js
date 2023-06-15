@@ -7,6 +7,8 @@ import axios from "axios";
 import VueRouter from 'vue-router';
 import router from './router';
 import store from './store';
+import dataV from '@jiaminghi/data-view'
+Vue.use(dataV)
 
 // 引入echarts
 import echarts from 'echarts'

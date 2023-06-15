@@ -37,11 +37,11 @@ export default {
       var option = {
         // echarts 图表选项配置
         title: {
-          text: '城市平均薪资分布情况',
+          text: '各省市岗位数量发布概况',
           left: 'center', // 设置标题居中
           top: 10, // 设置距离顶部 10px
           textStyle: {
-            color: 'white' // 或者 '#ffffff'
+            color:  'rgb(0,255,234)',
           }
         },
         tooltip: {
@@ -50,13 +50,14 @@ export default {
         },
         visualMap: {
           min: 0,
-          max: 4000,
+          max: 8000,
           left: '20px', // 向右移动 30px
           top: 'bottom',
           text: ['高', '低'],
           inRange: {
             // prettier-ignore
-            color:  ['#99ffff', 'rgb(64,166,255)', 'rgba(0,101,255,0.91)']
+
+            color:  ['#99ffff', 'rgb(64,166,255)', 'rgb(64,124,255)', 'rgba(0,101,255,0.91)']
           },
           calculable: true,
           itemWidth: 10,
@@ -67,12 +68,12 @@ export default {
         },
         series: [
           {
-            name: '数据名称',
+            name: '岗位数量',
             type: 'map',
             mapType: 'china',
             left: 'center',
             top: 100,
-            zoom: 1.3,
+            zoom: 1.5,
             roam: true,
             label: {
               normal: {

@@ -27,7 +27,7 @@ export default {
       getCityAndCityCount().then(res => {
         const cityList = [];
         const countList = [];
-        for (let i = 0; i < res.data.length; i++) {
+        for (let i = 0; i < res.data.length-5; i++) {
           const city = res.data[i].city;
           const count = res.data[i].count;
           cityList.push(city);
@@ -49,7 +49,7 @@ export default {
         },
         backgroundColor: 'rgba(0, 0, 0, 0.1)',
         title: {
-          text: 'Top15城市岗位数量统计图',
+          text: 'Top10城市岗位数量统计图',
           top:'15',
           left:'center',
           textStyle:{
