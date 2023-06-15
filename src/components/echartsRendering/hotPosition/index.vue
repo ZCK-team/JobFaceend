@@ -6,50 +6,65 @@
 
 <script>
 import * as echarts from 'echarts';
+import {getCityFromHottestPosition} from "@/api/positionInformation";
 
 export default {
   name:'hotPosition',
   mounted() {
-this.hotjob()
+    this.hotjob()
+    this.getCityFromHottestPosition()
   },
   methods:{
-    hotjob(){
+    async hotjob(){
+      const res = await getCityFromHottestPosition();
+      console.log("数据",res.data)
+      let dataSoutce = []
+      // let
+      for(let i=0;i<20;i++){
+        console.log(res.data[i])
+        console.log(Object.values(res.data[i]))
+        dataSoutce.push(Object.values(res.data[i]))
+        // dataSoutce.reverse()
+      }
+      dataSoutce = dataSoutce.reverse();
       var chartDom = document.getElementById('position');
       var myChart = echarts.init(chartDom);
       var option;
-
       option = {
         backgroundColor: 'rgba(0, 0, 0, 0.1)', // 设置背景透明度为 80%
         tooltip: {
           trigger: 'item'
         },
         dataset: {
-          source: [
-            ['score', 'amount', 'product'],
-            [89.3, 58212, 'Matcha Latte'],
-            [57.1, 78254, 'Milk Tea'],
-            [74.4, 41032, 'Cheese Cocoa'],
-            [50.1, 12755, 'Cheese Brownie'],
-            [89.7, 20145, 'Matcha Cocoa'],
-            [68.1, 79146, 'Tea'],
-            [19.6, 91852, 'Orange Juice'],
-            [10.6, 101852, 'Lemon Juice'],
-            [32.7, 20112, 'Walnut Brownie']
-          ]
+          source: dataSoutce
         },
-        grid: { containLabel: true },
-        xAxis: { name: 'amount' },
-        yAxis: { type: 'category' },
+        grid: {
+          containLabel: true,
+          width: '82%',
+          left: 10
+        },
+        xAxis: {
+          name: 'count',
+          axisLabel: {
+            rotate: 45 // 设置旋转角度，正值表示逆时针旋转，负值表示顺时针旋转
+          }
+        },
+        yAxis: {
+          type: 'category' ,
+          axisLabel: {
+            rotate: 45 // 设置旋转角度，正值表示逆时针旋转，负值表示顺时针旋转
+          }
+        },
         visualMap: {
           orient: 'horizontal',
           left: 'center',
           min: 10,
-          max: 100,
+          max: 650,
           text: ['High Score', 'Low Score'],
           // Map the score column to color
           dimension: 0,
           inRange: {
-            color: ['#65B581', '#FFCE34', '#FD665F']
+            color: ['#FFCE34', '#FD665F']
           }
         },
         series: [
@@ -64,7 +79,7 @@ this.hotjob()
           }
         ]
       };
-
+      // option.yAxis.data = option.yAxis.data.reverse();
       option && myChart.setOption(option);
 
     }

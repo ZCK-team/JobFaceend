@@ -16,7 +16,7 @@ const router = new VueRouter({
     routes: [
         {
             path: '/',
-            redirect: '/Login', // 默认重定向到 /default 页面
+            redirect: '/Login', // 默认重定向到 /Login 登录页面
         },
         {
             path: '/Login',
@@ -32,17 +32,5 @@ const router = new VueRouter({
         },
     ]
 });
-//
-// router.beforeEach((to, from, next) => {
-    // 检查用户是否已登录
-    // const isLoggedIn = ...; // 你自己的登录状态判断逻辑
-
-    // if (this.sessionStorage === null) {
-    //     // 用户未登录，重定向到登录页面
-    //     next('/Login');
-    // } else {
-    //     next();
-    // }
-// });
 
 export default router;

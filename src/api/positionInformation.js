@@ -7,6 +7,14 @@ export function getPositionInformationAll() {
     });
 }
 
+export function getCityFromHottestPosition() {
+    return request({
+        url: '/positionInformation/getCityFromHottestPosition',
+        method: "get",
+    });
+}
+
+
 export function getSalary() {
     return request({
         url: '/positionInformation/getSalary',
