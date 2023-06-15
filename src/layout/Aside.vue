@@ -9,10 +9,14 @@
             :collapse-transition="false"
             router
     >
-       <el-menu-item index="/Home">
+       <el-menu-item @click="navigate('/Home')">
            <i class="el-icon-s-home"></i>
            <span slot="title">首页</span>
        </el-menu-item>
+      <el-menu-item @click="navigate('/PositionSearch')">
+        <i class="el-icon-s-help"></i>
+        <span slot="title">查询</span>
+      </el-menu-item>
 
         <el-menu-item :index="'/'+item.menuclick" v-for="(item,i) in menu" :key="i">
             <i :class="item.menuicon"></i>
@@ -42,6 +46,11 @@
         },
         props:{
             isCollapse:Boolean
+        },
+        methods: {
+          navigate(path) {
+            this.$router.push(path);
+          }
         }
     }
 </script>

@@ -59,7 +59,6 @@
                                 this.$store.commit("setMenu",res.data.menu)
                                 //跳转到主页
                                 this.$router.push('/Index')
-                                // this.$router.replace('/PositionSearch');
                             }else{
                                 this.confirm_disabled=false;
                                 alert('校验失败，用户名或密码错误！');

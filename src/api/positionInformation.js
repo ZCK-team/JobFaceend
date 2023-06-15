@@ -6,3 +6,10 @@ export function getPositionInformationAll() {
         method: "get",
     });
 }
+
+export function getCityFromHottestPosition() {
+    return request({
+        url: '/positionInformation/getCityFromHottestPosition',
+        method: "get",
+    });
+}
