@@ -1,5 +1,5 @@
 <template>
-  <div id="consider" style="width: 100%; height: 100%;"></div>
+  <div id="experienceAndSalary" style="width: 100%; height: 100%;"></div>
 </template>
 
 <script>
@@ -12,18 +12,21 @@ export default {
     return {}
   },
   mounted() {
-    this.consider()
+    this.experienceAndSalary()
   },
   methods: {
-    async consider() {
+    async experienceAndSalary() {
       let avgSalaryMin, avgSalaryMax, avgCombined;
       await getSalaryAll().then(res => {
         avgSalaryMin = [res.data[5].avgSalaryMin, res.data[2].avgSalaryMin, res.data[0].avgSalaryMin, res.data[3].avgSalaryMin, res.data[4].avgSalaryMin, res.data[1].avgSalaryMin]
         avgSalaryMax = [res.data[5].avgSalaryMax, res.data[2].avgSalaryMax, res.data[0].avgSalaryMax, res.data[3].avgSalaryMax, res.data[4].avgSalaryMax, res.data[1].avgSalaryMax]
         avgCombined = [res.data[5].avgCombined, res.data[2].avgCombined, res.data[0].avgCombined, res.data[3].avgCombined, res.data[4].avgCombined, res.data[1].avgCombined]
       });
-      const chartDom = document.getElementById('consider');
+      const chartDom = document.getElementById('experienceAndSalary');
       const myChart = echarts.init(chartDom);
+      let resize = (chart)=>{
+        chart.resize();
+      }
       let option;
       option = {
         title: {
@@ -53,7 +56,12 @@ export default {
         },
         toolbox: {
           feature: {
-            saveAsImage: {}
+            saveAsImage: {
+              title: '下载图片',
+              iconStyle: {
+                color: 'rgb(0,255,234)',
+              }
+            },
           }
         },
         xAxis: {
@@ -103,6 +111,11 @@ export default {
         ]
       };
       option && myChart.setOption(option);
+      window.addEventListener('resize', resize.bind(null, myChart));
+      this.$once('hook:beforeDestroy', () => {
+        window.removeEventListener('resize', resize);
+      });
+
     }
   }
 }

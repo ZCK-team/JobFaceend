@@ -3,7 +3,7 @@
         <div style="margin-top: 8px;">
             <i :class="icon" style="font-size: 20px;cursor: pointer;" @click="collapse"></i>
         </div>
-        <div style="flex: 1;text-align: center;font-size: 25px;">
+        <div style="flex: 1;text-align: center;font-size: 25px; color:rgb(0,247,255)">
             <span>欢迎来到AI职业探索系统</span>
         </div>
         <el-dropdown style="color: white">

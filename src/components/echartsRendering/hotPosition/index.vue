@@ -25,6 +25,9 @@ export default {
       dataSource = dataSource.reverse();
       const chartDom = document.getElementById('position');
       const myChart = echarts.init(chartDom);
+      let resize = (chart)=>{
+        chart.resize();
+      }
       let option = {
         title: {
           text: '热门岗位Top20',
@@ -32,6 +35,16 @@ export default {
           top: 7, // 设置距离顶部 10px
           textStyle: {
             color:  'rgb(0,255,234)',
+          }
+        },
+        toolbox: {
+          feature: {
+            saveAsImage: {
+              title: '下载图片',
+              iconStyle: {
+                color: 'rgb(0,255,234)',
+              }
+            },
           }
         },
         backgroundColor: 'rgba(0, 0, 0, 0.1)', // 设置背景透明度为 80%
@@ -97,6 +110,11 @@ export default {
         ]
       };
       option && myChart.setOption(option);
+      window.addEventListener('resize', resize.bind(null, myChart));
+      this.$once('hook:beforeDestroy', () => {
+        window.removeEventListener('resize', resize);
+      });
+
 
     }
   }

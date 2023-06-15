@@ -29,6 +29,9 @@ export default {
   methods:{
     initChart(){
       let myChart = echarts.init(this.$refs.wordCloud);
+      let resize = (chart)=>{
+        chart.resize();
+      }
       myChart.setOption({
         backgroundColor: 'rgba(0, 0, 0, 0.15)', // 设置背景透明度为 80%
         title: {
@@ -41,6 +44,17 @@ export default {
         },
         tooltip: {
           trigger: 'item',
+        },
+        toolbox: {
+          feature: {
+            saveAsImage: {
+              title: '下载图片',
+              iconStyle: {
+                color: 'rgb(0,255,234)',
+                right: 20,
+              }
+            },
+          }
         },
         textStyle:{
           top: '30',
@@ -66,14 +80,17 @@ export default {
             rotationRange: [0,90],
             left: "center",
             top: "center",
-            right: null,
-            bottom: null,
             width: "200%",
             height: "200%",
             data: this.wordList
           }
         ]
       })
+
+      window.addEventListener('resize', resize.bind(null, myChart));
+      this.$once('hook:beforeDestroy', () => {
+        window.removeEventListener('resize', resize);
+      });
 
 
     }

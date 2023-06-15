@@ -19,19 +19,23 @@ export default {
   mounted() {
     const chartDom = this.$refs.chart;
     const myChart = echarts.init(chartDom);
+    let resize = (chart)=>{
+      chart.resize();
+    }
     this.loadMap(myChart);
-
+    window.addEventListener('resize', resize.bind(null, myChart));
+    this.$once('hook:beforeDestroy', () => {
+      window.removeEventListener('resize', resize);
+    });
   },
   methods: {
     async loadMap(myChart) {
-      var data = [];// 修改为初始值为空数组
+      const data = [];// 修改为初始值为空数组
       await getmapnum().then(res => {
-        for (var i = 0; i < res.data.length; i++) { // 修改循环条件
-          console.log("tttttttt",res.data[3].avgsalarymin)
-          data.push({name: String(res.data[i].province), value: parseInt(res.data[i].num), avgsalarymin: res.data[i].avgsalarymin, avgsalarymax: res.data[i].avgsalarymax});
+        for (let i = 0; i < res.data.length; i++) { // 修改循环条件
+          data.push({name: String(res.data[i].province), value: parseInt(res.data[i].num), avgSalaryMin: res.data[i].avgSalaryMin, avgSalaryMax: res.data[i].avgSalaryMax});
         }
       })
-      // console.log(data)
       myChart.showLoading();
       echarts.registerMap('china', chinaJson);
       const option = {
@@ -44,6 +48,16 @@ export default {
             color: 'rgb(0,255,234)',
           }
         },
+        toolbox: {
+          feature: {
+            saveAsImage: {
+              title: '下载图片',
+              iconStyle: {
+                color: 'rgb(0,255,234)',
+              }
+            },
+          }
+        },
         tooltip: {
           trigger: 'item',
           formatter: (e) => {
@@ -53,8 +67,8 @@ export default {
                <div>
                    <p style="line-height: 30px; font-weight: 600">${data.name}</p>
                    <p><span>岗位数量 : </span><span>${data.value}</span></p>
-                   <p><span>最低平均薪资 : </span><span>${data.avgsalarymin}K</span></p>
-                   <p><span>最高平均薪资 : </span><span>${data.avgsalarymax}K</span></p>
+                   <p><span>最低平均薪资 : </span><span>${data.avgSalaryMin}K</span></p>
+                   <p><span>最高平均薪资 : </span><span>${data.avgSalaryMax}K</span></p>
                </div>
             `;
             return context;
@@ -67,8 +81,6 @@ export default {
           top: 'bottom',
           text: ['高', '低'],
           inRange: {
-            // prettier-ignore
-
             color: ['#99ffff', 'rgb(64,166,255)', 'rgb(64,124,255)', 'rgba(0,101,255,0.91)']
           },
           calculable: true,
@@ -102,6 +114,9 @@ export default {
       };
       myChart.hideLoading();
       myChart.setOption(option)
+      let that = this;
+      window.addEventListener('resize', function () {
+        that.myChart.resize();})
     },
   }
 }
