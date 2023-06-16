@@ -1,5 +1,5 @@
 <template>
-  <div ref="wordCloud" style="height: 100%; width: 100%;" ></div>
+  <div id="wordCloud" ref="wordCloud" style="height: 100%; width: 100%;" ></div>
 </template>
 <script>
 import * as echarts from 'echarts';
@@ -29,9 +29,6 @@ export default {
   methods:{
     initChart(){
       let myChart = echarts.init(this.$refs.wordCloud);
-      let resize = (chart)=>{
-        chart.resize();
-      }
       myChart.setOption({
         backgroundColor: 'rgba(0, 0, 0, 0.15)', // 设置背景透明度为 80%
         title: {
@@ -87,10 +84,15 @@ export default {
         ]
       })
 
-      window.addEventListener('resize', resize.bind(null, myChart));
-      this.$once('hook:beforeDestroy', () => {
-        window.removeEventListener('resize', resize);
+      const wordCloud = document.querySelector('#wordCloud')
+      //放置 获取DOM 节点时 去监听
+      const observer = new ResizeObserver(() => {
+        myChart.resize();
       });
+      observer.observe(wordCloud);
+
+
+
 
 
     }

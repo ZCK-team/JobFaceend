@@ -1,6 +1,6 @@
 <template>
   <div style="width: 100%;height: 100%;">
-    <div ref="chart" style="width: 100%; height: 100%;"></div>
+    <div id="Chart" ref="chart" style="width: 100%; height: 100%;"></div>
   </div>
 </template>
 <script>
@@ -19,21 +19,21 @@ export default {
   mounted() {
     const chartDom = this.$refs.chart;
     const myChart = echarts.init(chartDom);
-    let resize = (chart)=>{
-      chart.resize();
-    }
+
     this.loadMap(myChart);
-    window.addEventListener('resize', resize.bind(null, myChart));
-    this.$once('hook:beforeDestroy', () => {
-      window.removeEventListener('resize', resize);
+    const Chart = document.querySelector('#Chart')
+    //放置 获取DOM 节点时 去监听
+    const observer = new ResizeObserver(() => {
+      myChart.resize();
     });
+    observer.observe(Chart);
   },
   methods: {
     async loadMap(myChart) {
       const data = [];// 修改为初始值为空数组
       await getmapnum().then(res => {
         for (let i = 0; i < res.data.length; i++) { // 修改循环条件
-          data.push({name: String(res.data[i].province), value: parseInt(res.data[i].num), avgSalaryMin: res.data[i].avgSalaryMin, avgSalaryMax: res.data[i].avgSalaryMax});
+          data.push({name: String(res.data[i].province), value: parseInt(res.data[i].num), avgSalaryMin: res.data[i].avgsalarymin, avgSalaryMax: res.data[i].avgsalarymax});
         }
       })
       myChart.showLoading();
@@ -114,9 +114,12 @@ export default {
       };
       myChart.hideLoading();
       myChart.setOption(option)
-      let that = this;
-      window.addEventListener('resize', function () {
-        that.myChart.resize();})
+      const cityAndPosition = document.querySelector('#cityAndPosition')
+      //放置 获取DOM 节点时 去监听
+      const observer = new ResizeObserver(() => {
+        myChart.resize();
+      });
+      observer.observe(cityAndPosition);
     },
   }
 }

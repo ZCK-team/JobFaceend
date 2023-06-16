@@ -52,7 +52,8 @@ export default {
   name: "Home",
   components: {myMap, hotPosition, wordCloud, cityAndPositionCount, experienceAndSalary},
   data() {
-    return {}
+    return {
+    }
   },
   mounted() {
     getPositionInformationAll().then(res => {
@@ -78,10 +79,11 @@ export default {
   background-size: 112%;
 }
 
+
 /*.border{
-  height: 100%;
   width: 112% !important;
 }*/
+
 
 
 </style>

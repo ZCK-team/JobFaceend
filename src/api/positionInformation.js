@@ -1,7 +1,8 @@
 import request from '@/utils/request'
 
-export function getPositionInformationAll() {
+export function getPositionInformationAll(page, size) {
     return request({
+        params: { page, size },
         url: '/positionInformation/getPositionInformationAll',
         method: "get",
     });
@@ -34,6 +35,9 @@ export function getCityAndCityCount() {
         method: "get",
     });
 }
+
+
+
 
 
 

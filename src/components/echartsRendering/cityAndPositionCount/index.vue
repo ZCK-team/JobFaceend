@@ -23,9 +23,6 @@ export default {
   methods: {
     dataLink() {
       const myChart = echarts.init(document.getElementById('cityAndPosition'));
-      let resize = (chart)=>{
-        chart.resize();
-      }
       getCityAndCityCount().then(res => {
         const cityList = [];
         const countList = [];
@@ -160,10 +157,12 @@ export default {
           });
         });
       });
-      window.addEventListener('resize', resize.bind(null, myChart));
-      this.$once('hook:beforeDestroy', () => {
-        window.removeEventListener('resize', resize);
+      const cityAndPosition = document.querySelector('#cityAndPosition')
+      //放置 获取DOM 节点时 去监听
+      const observer = new ResizeObserver(() => {
+        myChart.resize();
       });
+      observer.observe(cityAndPosition);
 
     }
 

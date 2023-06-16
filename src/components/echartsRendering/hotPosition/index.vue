@@ -25,9 +25,6 @@ export default {
       dataSource = dataSource.reverse();
       const chartDom = document.getElementById('position');
       const myChart = echarts.init(chartDom);
-      let resize = (chart)=>{
-        chart.resize();
-      }
       let option = {
         title: {
           text: '热门岗位Top20',
@@ -110,10 +107,12 @@ export default {
         ]
       };
       option && myChart.setOption(option);
-      window.addEventListener('resize', resize.bind(null, myChart));
-      this.$once('hook:beforeDestroy', () => {
-        window.removeEventListener('resize', resize);
+      const position = document.querySelector('#position')
+      //放置 获取DOM 节点时 去监听
+      const observer = new ResizeObserver(() => {
+        myChart.resize();
       });
+      observer.observe(position);
 
 
     }

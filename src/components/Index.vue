@@ -1,4 +1,5 @@
 <template>
+  <dv-full-screen-container style="margin: 0; padding: 0;">
   <el-container style="height: 100%; width: 100%; border: 1px solid #eee">
     <el-aside :width="aside_width" style="height: 100vh;background-color: rgb(238, 241, 246);margin-left: -1px;">
       <Aside :fold="fold"></Aside>
@@ -8,10 +9,12 @@
         <Header @doCollapse="doCollapse" :icon="icon"></Header>
       </el-header>
       <el-main style="height: 94%; :width: 100%; ">
+        <dv-loading class="loading" v-show="isLoading">玩命加载中...</dv-loading>
         <router-view/>
       </el-main>
     </el-container>
   </el-container>
+  </dv-full-screen-container>
 </template>
 
 <script>
@@ -23,11 +26,19 @@ export default {
   components: {Aside, Header},
   data() {
     return {
+      isLoading:true,
       fold: false,//是否折叠 默认展开
       aside_width: "12%",
       right_width: "88%",
       icon: 'el-icon-s-fold'
     }
+  },
+  mounted() {
+    // 获取loading标签的容器元素
+    setTimeout(() => {
+      this.isLoading = false
+    }, 3000);
+
   },
   methods: {
     doCollapse() {
@@ -53,9 +64,13 @@ export default {
   line-height: 60px;
 
 }
+.loading{
+  background-color: #0e4d8f;
+}
 
 .el-main {
   padding: 0px;
+  color: #fff;
 }
 
 .el-aside {
