@@ -15,7 +15,7 @@
        </el-menu-item>
       <el-menu-item @click="navigate('/PositionSearch')">
         <i class="el-icon-s-help"></i>
-        <span slot="title">查询</span>
+        <span slot="title">找工作</span>
       </el-menu-item>
 
         <el-menu-item :index="'/'+item.menuclick" v-for="(item,i) in menu" :key="i">
