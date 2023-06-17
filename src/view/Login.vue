@@ -119,6 +119,6 @@ export default {
 
 <style>
 .el-form-item__label{
-  color: #ffffff;
+  color: #ffffff !important;
 }
 </style>
