@@ -41,7 +41,7 @@ export default {
       const option = {
         // echarts 图表选项配置
         title: {
-          text: '各省市岗位薪资分布',
+          text: '各省市岗位分布',
           left: 'center', // 设置标题居中
           top: 10, // 设置距离顶部 10px
           textStyle: {
@@ -67,8 +67,6 @@ export default {
                <div>
                    <p style="line-height: 30px; font-weight: 600">${data.name}</p>
                    <p><span>岗位数量 : </span><span>${data.value}</span></p>
-                   <p><span>最低平均薪资 : </span><span>${data.avgSalaryMin}K</span></p>
-                   <p><span>最高平均薪资 : </span><span>${data.avgSalaryMax}K</span></p>
                </div>
             `;
             return context;
@@ -97,7 +95,7 @@ export default {
             mapType: 'china',
             left: 'center',
             top: 100,
-            zoom: 1.4,
+            zoom: 1.3,
             roam: true,
             label: {
               normal: {
