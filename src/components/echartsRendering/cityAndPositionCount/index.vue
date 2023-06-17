@@ -148,7 +148,6 @@ export default {
         // 当用户单击栏时启用数据缩放
         const zoomSize = 6;
         myChart.on('click', function (params) {
-          console.log(dataAxis[Math.max(params.dataIndex - zoomSize / 2, 0)]);
           myChart.dispatchAction({
             type: 'dataZoom',
             startValue: dataAxis[Math.max(params.dataIndex - zoomSize / 2, 0)],

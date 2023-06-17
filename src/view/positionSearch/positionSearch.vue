@@ -10,7 +10,7 @@
           @clear="handleClear"
           @keyup.native="handleKeyPress"
       ></el-input>
-      <span class="energy-ball" @click="handleSearch">
+      <span class="energy-ball" @click="getFullTextSearch">
       <i class="el-icon-search"></i>
     </span>
     </div>
@@ -22,11 +22,7 @@
           :cell-style="cellStyle"
           :row-style="{height: '6.3vh'}"
           height="520px"
-          :style="{
-          'max-height': tableHeight,
-          'overflow-y': shouldShowScrollbar ? 'auto' : 'initial',
-          width: '92%'
-        }"
+          :style="{width: '92%'}"
           :header-cell-style=" headerCellStyle"
           style="height: 85vh; width: 80%; text-align: center ">
         <el-table-column prop="id" label="序号" width="50px"></el-table-column>
@@ -53,7 +49,7 @@
 </template>
 
 <script>
-import {getPositionInformationAll} from "@/api/positionInformation";
+import {fullTextSearch, getPositionInformationAll} from "@/api/positionInformation";
 
 export default {
   name: "PositionSearch",
@@ -68,31 +64,24 @@ export default {
     };
   },
   computed: {
-    tableHeight() {
-      if (this.pageSize >= 20) {
-        return '800px'; // 设置表格最大高度为 400px
-      } else {
-        return 'auto'; // 表格高度自适应内容
-      }
-    },
-    shouldShowScrollbar() {
-      return this.positionData.length > this.pageSizeOptions[this.pageSizeOptions.length - 1];
-    },
+
   },
   mounted() {
     this.fetchPositionData();
+    this.getFullTextSearch();
   },
   methods: {
+    //设置表头样式
     headerCellStyle(){
       return "background: #409eff; color: white; text-align: center";
     },
+    //设置表格里的内容样式
     cellStyle(){
-      return "text-align:center"
+      return "background: #3ae6de40;text-align:center"
     },
     // 获取职位信息数据
     fetchPositionData() {
       getPositionInformationAll(this.currentPage, this.pageSize).then(response =>{
-        console.log("12323",response)
         this.positionData = response.data.records;
         this.totalPositions = response.data.total;
       })
@@ -112,14 +101,17 @@ export default {
       // 清空搜索关键字的处理逻辑
       // 可以将搜索关键字清空，重新获取数据等
     },
-    handleSearch() {
-      // 执行搜索操作
-      console.log('Performing search:', this.searchText);
-    },
     handleKeyPress(event) {
       if (event.keyCode === 13) {
-        this.handleSearch();
+        this.getFullTextSearch();
       }
+    },
+    getFullTextSearch(){
+      fullTextSearch(this.searchText, this.positionData, this.pageSize).then(response =>{
+        this.positionData = response.data.records;
+        this.totalPositions = response.data.total;
+        console.log(this.totalPositions);
+      })
     }
   },
 };
@@ -132,14 +124,10 @@ export default {
   background-image: url("../../assets/searchBg1.png");
   background-color: #0e4d8f;
   background-size: cover;
-  /*display: flex;*/
-  /*justify-content: center;*/
-  /*align-items: center;*/
 }
 .searchInput{
    height: 20%;
   text-align: center;
-  /*line-height: 10px;*/
  }
 .input{
   width: 500px;
@@ -171,7 +159,9 @@ export default {
   background-color: rgba(255, 255, 255, 0.9);
   border: none!important;
 }
-
+.tableData .table {
+  opacity: 0.9;
+}
 .rainbow-input {
   top: 40px;
   position: relative;

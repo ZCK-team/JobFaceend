@@ -59,7 +59,7 @@ export default {
   data() {
 
     return {
-      condition : 'b',
+      condition : 'a',
       items: [
         {component: 'myMapsalary'},
         {component: 'myMap'},
@@ -72,9 +72,6 @@ export default {
     }
   },
   mounted() {
-    getPositionInformationAll().then(res => {
-      console.log("+++++++++++++", res.data);
-    })
   },
 
 }

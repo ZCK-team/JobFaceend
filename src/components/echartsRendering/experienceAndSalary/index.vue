@@ -38,7 +38,6 @@ export default {
         tooltip: {
           trigger: 'axis',
           formatter: function (params) {
-            console.log(params)
             return '<strong style="font-size: 18px; color: coral ;">工作' + params[0].axisValue + '<br></strong>' +
                 '<strong style="font-size: 18px; color: ' + params[2].color + ';">' + '平均薪资 --->' + params[2].value + "K<br>" + "</strong>" +
                 '<strong style="font-size: 18px; color: ' + params[0].color + ';">' + '最高平均薪资 --->' + params[0].value + "K<br>" + "</strong>" +

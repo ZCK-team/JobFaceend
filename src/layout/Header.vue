@@ -29,14 +29,10 @@
         },
         methods:{
             toUser(){
-                console.log('to_user')
-
                 this.$router.push("/Home")
 
             },
             logout(){
-                console.log('logout')
-
                 this.$confirm('您确定要退出登录吗?', '提示', {
                     confirmButtonText: '确定',  //确认按钮的文字显示
                     type: 'warning',

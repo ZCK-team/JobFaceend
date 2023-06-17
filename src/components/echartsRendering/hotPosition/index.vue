@@ -11,15 +11,12 @@ export default {
   name:'hotPosition',
   mounted() {
     this.hotJob()
-    this.getCityFromHottestPosition()
   },
   methods:{
     async hotJob(){
       const res = await getCityFromHottestPosition();
       let dataSource = []
       for(let i=0;i<20;i++){
-        console.log(res.data[i])
-        console.log(Object.values(res.data[i]))
         dataSource.push(Object.values(res.data[i]))
       }
       dataSource = dataSource.reverse();

@@ -8,7 +8,7 @@ export function getPositionInformationAll(page, size) {
     });
 }
 
-export function getCityFromHottestPosition() {
+export function getCityFromHottestPosition(){
     return request({
         url: '/positionInformation/getCityFromHottestPosition',
         method: "get",
@@ -36,6 +36,14 @@ export function getCityAndCityCount() {
     });
 }
 
+
+export function fullTextSearch(inputValue, page, size) {
+    return request({
+        params: {inputValue, page, size },
+        url: '/positionInformation/fullTextSearch',
+        method: "post",
+    });
+}
 
 
 
