@@ -2,37 +2,40 @@
   <div class="search">
     <div class="searchInput">
       <el-input
-          class="input animated-input"
+        style="border-radius: 50px;"
+          class="input rainbow-input"
           v-model="searchText"
           placeholder="请输入搜索关键字"
-          clearable
           size="medium"
-          suffix-icon="el-icon-search"
           @clear="handleClear"
-          @search="handleSearch"
+          @keyup.native="handleKeyPress"
       ></el-input>
+      <span class="energy-ball" @click="handleSearch">
+      <i class="el-icon-search"></i>
+    </span>
     </div>
     <div class="tableData" >
       <el-table
           :data="positionData"
           class="table"
           border
-          cell-style="text-align:center"
-          :row-style="{height: '6.75vh'}"
-          height="600px"
+          :cell-style="cellStyle"
+          :row-style="{height: '6.3vh'}"
+          height="520px"
           :style="{
-    'max-height': tableHeight,
-    'overflow-y': shouldShowScrollbar ? 'auto' : 'initial'
-  }"
-          header-cell-style="background-color: #409eff; color: white ;  textAlign: center"
+          'max-height': tableHeight,
+          'overflow-y': shouldShowScrollbar ? 'auto' : 'initial',
+          width: '92%'
+        }"
+          :header-cell-style=" headerCellStyle"
           style="height: 85vh; width: 80%; text-align: center ">
-        <el-table-column prop="id" label="序号"></el-table-column>
+        <el-table-column prop="id" label="序号" width="50px"></el-table-column>
         <el-table-column prop="job" label="职位"></el-table-column>
-        <el-table-column prop="city" label="城市"></el-table-column>
+        <el-table-column prop="city" label="城市" width="100px"></el-table-column>
         <el-table-column prop="companyName" label="公司名称"></el-table-column>
         <el-table-column prop="salary" label="薪资"></el-table-column>
-        <el-table-column prop="education" label="教育"></el-table-column>
-        <el-table-column prop="experience" label="经验"></el-table-column>
+        <el-table-column prop="education" label="学历" width="100px"></el-table-column>
+        <el-table-column prop="experience" label="工作经验"></el-table-column>
       </el-table>
       <div class="pagination-container">
         <el-pagination
@@ -80,6 +83,12 @@ export default {
     this.fetchPositionData();
   },
   methods: {
+    headerCellStyle(){
+      return "background: #409eff; color: white; text-align: center";
+    },
+    cellStyle(){
+      return "text-align:center"
+    },
     // 获取职位信息数据
     fetchPositionData() {
       getPositionInformationAll(this.currentPage, this.pageSize).then(response =>{
@@ -104,9 +113,14 @@ export default {
       // 可以将搜索关键字清空，重新获取数据等
     },
     handleSearch() {
-      // 执行搜索的处理逻辑
-      // 可以根据搜索关键字进行数据过滤、重新获取数据等
+      // 执行搜索操作
+      console.log('Performing search:', this.searchText);
     },
+    handleKeyPress(event) {
+      if (event.keyCode === 13) {
+        this.handleSearch();
+      }
+    }
   },
 };
 </script>
@@ -115,7 +129,7 @@ export default {
 .search {
   width: 100%;
   height: 100%;
-  background-image: url("../../assets/searchBg6.png");
+  background-image: url("../../assets/searchBg1.png");
   background-color: #0e4d8f;
   background-size: cover;
   /*display: flex;*/
@@ -123,14 +137,14 @@ export default {
   /*align-items: center;*/
 }
 .searchInput{
-   height: 25%;
+   height: 20%;
   text-align: center;
-  line-height: 100px;
+  /*line-height: 10px;*/
  }
 .input{
   width: 500px;
-
-
+  background-color: rgba(72, 14, 143, 0.82);
+  cursor: pointer;
 }
 .tableData {
   height: 80%;
@@ -147,19 +161,118 @@ export default {
   justify-content: center;
   align-items: center;
 }
-.animated-input {
-  animation: pulse 1s infinite;
+
+
+</style>
+
+<style>
+.el-input .el-input__inner{
+  border-radius: 20px !important;
+  background-color: rgba(255, 255, 255, 0.9);
+  border: none!important;
 }
 
-/*@keyframes pulse {*/
-/*  0% {*/
-/*    transform: scale(1);*/
-/*  }*/
-/*  50% {*/
-/*    transform: scale(1.2);*/
-/*  }*/
-/*  100% {*/
-/*    transform: scale(1);*/
-/*  }*/
-/*}*/
+.rainbow-input {
+  top: 40px;
+  position: relative;
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 16px;
+  outline: auto;
+}
+
+.rainbow-input::after {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  right: -1px;
+  bottom: -1px;
+  border-radius: 40px;
+  box-shadow: 0 0 5px 2px #ff0000,
+  0 0 5px 2px #ff7f00,
+  0 0 5px 2px #ffff00,
+  0 0 5px 2px #00ff00,
+  0 0 5px 2px #0000ff,
+  0 0 5px 2px #8a2be2,
+  0 0 5px 2px #ff1493;
+  animation: rainbow-animation 5s linear infinite;
+}
+
+@keyframes rainbow-animation {
+  0%   { box-shadow:
+  0 0 2px 2px #ff7f00,
+  0 0 2px 3px #ffff00,
+  0 0 2px 5px #0000ff,
+  0 0 2px 6px #8a2be2,
+  0 0 2px 7px #ff1493; }
+  14%  { box-shadow: 0 0 5px 2px #ff1493,
+  0 0 2px 3px #ff7f00,
+  0 0 2px 4px #ffff00,
+  0 0 2px 6px #0000ff,
+  0 0 2px 7px #8a2be2; }
+}
+
+.rainbow-input::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  animation: energy-ball-animation 2s linear infinite;
+}
+
+.energy-ball {
+  position: absolute;
+  top: 114px;
+  right: 394px;
+  transform: translateY(-50%);
+  width: 19px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: rgba(72, 0, 255, 0.38);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.energy-ball i {
+  color: #ffffff;
+  font-size: 15px;
+
+}
+
+@keyframes energy-ball-animation {
+  0% {
+    box-shadow: 0 0 5px #ff0000,
+    0 0 10px #ff7f00,
+    0 0 15px #ffff00,
+    0 0 20px #00ff00,
+    0 0 25px #0000ff,
+    0 0 30px #8a2be2,
+    0 0 35px #ff1493,
+    0 0 40px #ff0000,
+    0 0 45px #ff7f00,
+    0 0 50px #ffff00;
+    transform: translateY(-50%) rotate(0deg);
+  }
+  100% {
+    box-shadow: 0 0 5px #ff0000,
+    0 0 10px #ff7f00,
+    0 0 15px #ffff00,
+    0 0 20px #00ff00,
+    0 0 25px #0000ff,
+    0 0 30px #8a2be2,
+    0 0 35px #ff1493,
+    0 0 40px #ff0000,
+    0 0 45px #ff7f00,
+    0 0 50px #ffff00;
+    transform: translateY(-50%) rotate(360deg);
+  }
+}
 </style>
