@@ -19,7 +19,7 @@
           border
           cell-style="text-align:center"
           :row-style="{height: '6.75vh'}"
-          height="480px"
+          height="600px"
           :style="{
     'max-height': tableHeight,
     'overflow-y': shouldShowScrollbar ? 'auto' : 'initial'
@@ -115,7 +115,7 @@ export default {
 .search {
   width: 100%;
   height: 100%;
-  background-image: url("../../assets/searchBg.png");
+  background-image: url("../../assets/searchBg6.png");
   background-color: #0e4d8f;
   background-size: cover;
   /*display: flex;*/
@@ -123,7 +123,7 @@ export default {
   /*align-items: center;*/
 }
 .searchInput{
-   height: 20%;
+   height: 25%;
   text-align: center;
   line-height: 100px;
  }
