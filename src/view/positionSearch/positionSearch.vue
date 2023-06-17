@@ -121,7 +121,7 @@ export default {
 .search {
   width: 100%;
   height: 100%;
-  background-image: url("../../assets/searchBg1.png");
+  background-image: url("../../assets/searchBg.png");
   background-color: #0e4d8f;
   background-size: cover;
 }
