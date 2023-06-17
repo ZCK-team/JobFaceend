@@ -41,7 +41,7 @@ export function fullTextSearch(inputValue, page, size) {
     return request({
         params: {inputValue, page, size },
         url: '/positionInformation/fullTextSearch',
-        method: "post",
+        method: "get",
     });
 }
 
