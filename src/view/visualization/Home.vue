@@ -45,6 +45,7 @@
 <script>
 
 
+// eslint-disable-next-line no-unused-vars
 import {getPositionInformationAll} from "@/api/positionInformation";
 import myMapsalary from "@/components/echartsRendering/myMap/indexminsalary";
 import myMap from "@/components/echartsRendering/myMap/index";

@@ -11,7 +11,7 @@ import dataV from '@jiaminghi/data-view'
 Vue.use(dataV)
 
 // 引入echarts
-import echarts from 'echarts'
+import * as echarts from 'echarts';
 Vue.prototype.$echarts = echarts
 
 Vue.prototype.$axios=axios;
