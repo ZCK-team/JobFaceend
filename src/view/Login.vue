@@ -96,9 +96,9 @@ export default {
   margin-left: -201px;
   width: 450px;
   height: 290px;
-  background: rgba(0, 216, 255, 0.7);
+  background: rgba(0, 123, 255, 0.9);
   border-radius: 3%;
-  opacity:80%;
+  opacity: 70%;
 }
 .login-title {
   margin: 20px 0;
