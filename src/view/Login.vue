@@ -84,7 +84,7 @@ export default {
   width: 100%;
   height: 100%;
   background-color: #B3C0D1;
-  background-image:  url('../assets/login.gif') ;
+  background-image:  url('../assets/searchBg.png') ;
   background-size: cover;
   background-position: center;
 }
