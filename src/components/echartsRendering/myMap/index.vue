@@ -95,12 +95,13 @@ export default {
             mapType: 'china',
             left: 'center',
             top: 100,
-            zoom: 1.3,
+            zoom: 1.4,
             roam: true,
             label: {
               normal: {
                 show: true,
                 fontSize: 9,
+                color: 'rgb(19,23,18)'
               },
               emphasis: {
                 show: true
