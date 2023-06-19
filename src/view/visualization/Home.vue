@@ -36,9 +36,7 @@
           <hot-position></hot-position>
         </dv-border-box-8>
       </div>
-
     </div>
-
   </div>
 </template>
 
