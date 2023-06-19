@@ -45,7 +45,6 @@
 <script>
 
 
-import {getPositionInformationAll} from "@/api/positionInformation";
 import myMapsalary from "@/components/echartsRendering/myMap/indexminsalary";
 import myMap from "@/components/echartsRendering/myMap/index";
 import hotPosition from "@/components/echartsRendering/hotPosition";
@@ -88,7 +87,7 @@ export default {
 .bg {
   background-image: url('../../assets/bg.png');
   background-repeat: no-repeat;
-  background-size: 112%;
+  background-size: cover;
 }
 .car {
   height: auto;

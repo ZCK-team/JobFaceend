@@ -1,5 +1,4 @@
 <template>
-  <dv-full-screen-container style="margin: 0; padding: 0;">
   <el-container style="height: 100%; width: 100%; border: 1px solid #eee">
     <el-aside :width="aside_width" style="height: 100vh;background-color: rgb(238, 241, 246);margin-left: -1px;">
       <Aside :fold="fold"></Aside>
@@ -14,7 +13,6 @@
       </el-main>
     </el-container>
   </el-container>
-  </dv-full-screen-container>
 </template>
 
 <script>
