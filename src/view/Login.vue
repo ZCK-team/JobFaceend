@@ -84,7 +84,7 @@ export default {
   width: 100%;
   height: 100%;
   background-color: #B3C0D1;
-  background-image:  url('../assets/searchBg.png') ;
+  background-image:  url('../assets/login.gif') ;
   background-size: cover;
   background-position: center;
 }
@@ -96,7 +96,7 @@ export default {
   margin-left: -201px;
   width: 450px;
   height: 290px;
-  background: rgba(0, 123, 255, 0.9);
+  background: rgba(0, 217, 255, 0.9);
   border-radius: 3%;
   opacity: 70%;
 }
