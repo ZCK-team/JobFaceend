@@ -16,7 +16,7 @@ Vue.prototype.$echarts = echarts
 
 Vue.prototype.$axios=axios;
 // Vue.prototype.$httpUrl='http://43.154.64.188:8080'
-Vue.prototype.$httpUrl='https://82.156.137.114:8080'
+Vue.prototype.$httpUrl='http://82.156.137.114:8090'
 Vue.config.productionTip = false
 //Vue.use(ElementUI);
 Vue.use(VueRouter);
